@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floating Label Select</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Apply Inter font globally */
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f0f4f8; /* Light background for contrast */
+        display: flex;
+        flex-direction: column; /* Allow multiple fields to stack */
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px; /* Add some padding for smaller screens */
+        box-sizing: border-box;
+      }
+
+      /* Container for the select field */
+      .select-container {
+        position: relative;
+        width: 100%; /* Full width by default */
+        max-width: 800px; /* Consistent max width with input fields */
+        margin-bottom: 2rem; /* Space below the select */
+      }
+
+      /* Media queries for responsiveness */
+      @media (min-width: 640px) {
+        /* Small screens and up */
+        .select-container {
+          width: 95%; /* Increased width for small screens */
+        }
+      }
+
+      @media (min-width: 768px) {
+        /* Medium screens and up */
+        .select-container {
+          width: 85%; /* Increased width for medium screens */
+        }
+      }
+
+      @media (min-width: 1024px) {
+        /* Large screens and up */
+        .select-container {
+          width: 70%; /* Increased width for large screens */
+        }
+      }
+
+      /* Styling for the select field */
+      .select-field {
+        width: 100%;
+        /* Adjusted padding to create more vertical space */
+        padding: 1.75rem 0.75rem 0.75rem; /* Top, Right/Left, Bottom */
+        min-height: 4rem; /* Ensure a sufficient minimum height */
+        font-size: 1rem;
+        border: 1px solid #cbd5e1; /* Light gray border */
+        border-radius: 0.5rem; /* Rounded corners */
+        outline: none; /* Remove default outline */
+        background-color: #ffffff; /* White background */
+        color: #334155; /* Dark gray text color */
+        appearance: none; /* Remove default select arrow */
+        -webkit-appearance: none; /* For Webkit browsers */
+        -moz-appearance: none; /* For Mozilla browsers */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2364748b'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E"); /* Custom arrow icon */
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 1.5em;
+        cursor: pointer; /* Indicate it's clickable */
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions for focus */
+      }
+
+      /* Focus state for the select field */
+      .select-field:focus {
+        border-color: #3b82f6; /* Blue border on focus */
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Light blue shadow on focus */
+      }
+
+      /* Styling for the label */
+      .select-label {
+        position: absolute;
+        left: 0.75rem; /* Align with select padding */
+        /* Adjusted initial top to be higher to avoid overlap with default selected text */
+        top: 0.75rem; /* Position label to be higher when acting as placeholder */
+        color: #64748b; /* Gray label color */
+        font-size: 1rem;
+        pointer-events: none; /* Allow clicks to pass through to the select */
+        transition: all 0.3s ease-in-out; /* Smooth animation for label movement and size */
+        background-color: transparent; /* Ensure no background interferes with text */
+        padding: 0 0.25rem; /* Small padding to prevent text clipping when moving */
+        transform-origin: top left; /* Set transform origin for scaling */
+        z-index: 1; /* Ensure label is above the select text */
+      }
+
+      /* Red asterisk for required fields */
+      .required-asterisk {
+        color: #ef4444; /* Red color for asterisk */
+        margin-left: 0.25rem; /* Space between label text and asterisk */
+      }
+
+      /* When select is focused or has a valid (non-empty) value, move and shrink the label */
+      .select-field:focus + .select-label,
+      .select-field:valid + .select-label {
+        top: 0.25rem; /* Move label to the top-inside of the select */
+        left: 0.75rem; /* Keep left aligned with padding */
+        font-size: 0.75rem; /* Shrink font size */
+        color: #1e293b; /* Darker color when active */
+        background-color: #ffffff; /* Match select background color to keep it "inside" */
+        padding: 0 0.25rem; /* Maintain padding */
+        z-index: 2; /* Ensure label is above select text when active */
+      }
+
+      /* Hide the initial empty option when a valid option is selected */
+      .select-field:valid option[value=''] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="select-container">
+      <select id="country" class="select-field" required>
+        <option value="" disabled selected>Select a Country</option>
+        <option value="usa">United States</option>
+        <option value="can">Canada</option>
+        <option value="mex">Mexico</option>
+        <option value="uk">United Kingdom</option>
+        <option value="ger">Germany</option>
+      </select>
+      <label for="country" class="select-label"
+        >Country<span class="required-asterisk">*</span></label
+      >
+    </div>
+
+    <div class="select-container">
+      <select id="city" class="select-field">
+        <option value="" disabled selected>Choose a City (Optional)</option>
+        <option value="ny">New York</option>
+        <option value="la">Los Angeles</option>
+        <option value="tor">Toronto</option>
+        <option value="van">Vancouver</option>
+      </select>
+      <label for="city" class="select-label">City</label>
+    </div>
+  </body>
+</html>

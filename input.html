@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floating Label Input</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Apply Inter font globally */
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f0f4f8; /* Light background for contrast */
+        display: flex;
+        flex-direction: column; /* Allow multiple inputs to stack */
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px; /* Add some padding for smaller screens */
+        box-sizing: border-box;
+      }
+
+      /* Container for the input field */
+      .input-container {
+        position: relative;
+        width: 100%; /* Full width by default */
+        max-width: 400px; /* Max width for desktop */
+        margin-bottom: 2rem; /* Space below the input */
+      }
+
+      /* Styling for the input field */
+      .input-field {
+        width: 100%;
+        padding: 1rem 0.75rem; /* Ample padding */
+        font-size: 1rem;
+        border: 1px solid #cbd5e1; /* Light gray border */
+        border-radius: 0.5rem; /* Rounded corners */
+        outline: none; /* Remove default outline */
+        background-color: #ffffff; /* White background */
+        color: #334155; /* Dark gray text color */
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions for focus */
+      }
+
+      /* Focus state for the input field */
+      .input-field:focus {
+        border-color: #3b82f6; /* Blue border on focus */
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Light blue shadow on focus */
+      }
+
+      /* Styling for the label */
+      .input-label {
+        position: absolute;
+        left: 0.75rem; /* Align with input padding */
+        top: 1rem; /* Align with input padding */
+        color: #64748b; /* Gray label color */
+        font-size: 1rem;
+        pointer-events: none; /* Allow clicks to pass through to the input */
+        transition: all 0.3s ease-in-out; /* Smooth animation for label movement and size */
+        background-color: transparent; /* Ensure no background interferes with text */
+        padding: 0 0.25rem; /* Small padding to prevent text clipping when moving */
+        transform-origin: top left; /* Set transform origin for scaling */
+      }
+
+      /* Red asterisk for required fields */
+      .input-label::after {
+        content: '*';
+        color: #ef4444; /* Red color for asterisk */
+        margin-left: 0.25rem; /* Space between label text and asterisk */
+      }
+
+      /* When input is focused or has content (not showing placeholder), move and shrink the label */
+      .input-field:focus + .input-label,
+      .input-field:not(:placeholder-shown) + .input-label {
+        top: 0.25rem; /* Move label to the top-inside of the input */
+        left: 0.75rem; /* Keep left aligned with padding */
+        font-size: 0.75rem; /* Shrink font size */
+        color: #1e293b; /* Darker color when active */
+        background-color: #ffffff; /* Match input background color to keep it "inside" */
+        padding: 0 0.25rem; /* Maintain padding */
+      }
+
+      /* Media queries for responsiveness */
+      @media (min-width: 640px) {
+        /* Small screens and up */
+        .input-container {
+          width: 80%;
+        }
+      }
+
+      @media (min-width: 768px) {
+        /* Medium screens and up */
+        .input-container {
+          width: 60%;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        /* Large screens and up */
+        .input-container {
+          width: 40%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="input-container">
+      <input
+        type="text"
+        id="username"
+        class="input-field"
+        placeholder=" "
+        required
+      />
+      <label for="username" class="input-label">Your Name</label>
+    </div>
+
+    <div class="input-container">
+      <input
+        type="email"
+        id="email"
+        class="input-field"
+        placeholder=" "
+        required
+      />
+      <label for="email" class="input-label">Email Address</label>
+    </div>
+
+    <div class="input-container">
+      <input
+        type="password"
+        id="password"
+        class="input-field"
+        placeholder=" "
+        required
+      />
+      <label for="password" class="input-label">Password</label>
+    </div>
+  </body>
+</html>
